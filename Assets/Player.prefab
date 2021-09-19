@@ -76,7 +76,7 @@ MonoBehaviour:
   jumpKey: 32
   sprintKey: 304
   groundDrag: 6
-  airDrag: 2
+  airDrag: 3
   groundCheck: {fileID: 5041482617160277005}
   groundMask:
     serializedVersion: 2
