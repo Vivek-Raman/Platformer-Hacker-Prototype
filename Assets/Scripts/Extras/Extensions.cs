@@ -12,6 +12,16 @@ public static class Extensions
     {
         return new Vector3(vector2.x, y, vector2.y);
     }
+
+    /// <summary>
+    /// Resets a Vector3 to (0, 0, 0).
+    /// </summary>
+    /// <returns>Vector after resetting components.</returns>
+    public static Vector3 Reset(this Vector3 vector3)
+    {
+        vector3.Set(0f, 0f, 0f);
+        return vector3;
+    }
     
     /// <summary>
     /// Flips the variable and returns new state.
