@@ -239,3 +239,14 @@ _ReSharper*/
 !?*.[Cc]ache/
 
 node_modules/
+
+Assets/Scenes/*/ReflectionProbe-0.exr.meta
+Assets/Scenes/*/ReflectionProbe-0.exr
+Assets/Scenes/*/Lightmap-0_comp_shadowmask.png.meta
+Assets/Scenes/*/Lightmap-0_comp_shadowmask.png
+Assets/Scenes/*/Lightmap-0_comp_light.exr.meta
+Assets/Scenes/*/Lightmap-0_comp_light.exr
+Assets/Scenes/*/Lightmap-0_comp_dir.png.meta
+Assets/Scenes/*/Lightmap-0_comp_dir.png
+Assets/Scenes/*/LightingData.asset.meta
+Assets/Scenes/*/LightingData.asset
