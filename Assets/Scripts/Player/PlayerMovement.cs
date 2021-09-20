@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -20,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Jumping")]
     public float jumpForce = 5f;
+    public float gravityForce = 3f;
 
     [Header("Keybinds")]
     [SerializeField] KeyCode jumpKey = KeyCode.Space;
@@ -47,16 +46,10 @@ public class PlayerMovement : MonoBehaviour
 
     private bool OnSlope()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight / 2 + 0.5f))
+        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit,
+            playerHeight * 0.5f + 0.5f, groundMask))
         {
-            if (slopeHit.normal != Vector3.up)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return !slopeHit.normal.Equals(Vector3.up);
         }
         return false;
     }
@@ -133,15 +126,20 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isGrounded && !OnSlope())
         {
-            rb.AddForce(moveDirection.normalized * moveSpeed * movementMultiplier, ForceMode.Acceleration);
+            rb.AddForce(moveDirection.normalized * (moveSpeed * movementMultiplier), ForceMode.Acceleration);
         }
         else if (isGrounded && OnSlope())
         {
-            rb.AddForce(slopeMoveDirection.normalized * moveSpeed * movementMultiplier, ForceMode.Acceleration);
+            rb.AddForce(slopeMoveDirection.normalized * (moveSpeed * movementMultiplier), ForceMode.Acceleration);
         }
         else if (!isGrounded)
         {
-            rb.AddForce(moveDirection.normalized * moveSpeed * movementMultiplier * airMultiplier, ForceMode.Acceleration);
+            Vector3 force = moveDirection.normalized * (moveSpeed * movementMultiplier * airMultiplier);
+            if (rb.velocity.y < 0f)
+            {
+                force += Vector3.down * gravityForce;
+            }
+            rb.AddForce(force, ForceMode.Acceleration);
         }
     }
 }

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5041482616722410727}
   - component: {fileID: 5041482616722410745}
   - component: {fileID: 5041482616722410744}
+  - component: {fileID: 5701330250551859714}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -69,14 +70,15 @@ MonoBehaviour:
   orientation: {fileID: 5041482617543615766}
   moveSpeed: 6
   airMultiplier: 0.4
-  walkSpeed: 4
+  walkSpeed: 6
   sprintSpeed: 6
   acceleration: 50
-  jumpForce: 14
+  jumpForce: 10
+  gravityForce: 16
   jumpKey: 32
   sprintKey: 304
-  groundDrag: 6
-  airDrag: 3
+  groundDrag: 5
+  airDrag: 2
   groundCheck: {fileID: 5041482617160277005}
   groundMask:
     serializedVersion: 2
@@ -106,7 +108,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5041482616722410725}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02c4d4837e5dcbd4d96075834d433fad, type: 3}
   m_Name: 
@@ -117,11 +119,25 @@ MonoBehaviour:
   wallRunGravity: 1
   wallRunJumpForce: 6
   cam: {fileID: 0}
-  fov: 90
-  wallRunfov: 100
+  fov: 60
+  wallRunfov: 65
   wallRunfovTime: 10
   camTilt: 10
   camTiltTime: 10
+--- !u!136 &5701330250551859714
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5041482616722410725}
+  m_Material: {fileID: 13400000, guid: 09f493cb3d912fa4f9dee857f907aed7, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5041482616999324610
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,7 +149,6 @@ GameObject:
   - component: {fileID: 5041482616999324613}
   - component: {fileID: 5041482616999324614}
   - component: {fileID: 5041482616999324615}
-  - component: {fileID: 5041482616999324612}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -204,20 +219,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &5041482616999324612
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5041482616999324610}
-  m_Material: {fileID: 13400000, guid: 09f493cb3d912fa4f9dee857f907aed7, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5041482617142700260
 GameObject:
   m_ObjectHideFlags: 0
