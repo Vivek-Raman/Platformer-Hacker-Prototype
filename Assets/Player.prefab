@@ -75,6 +75,7 @@ MonoBehaviour:
   acceleration: 50
   jumpForce: 10
   gravityForce: 16
+  frameBufferLength: 16
   jumpKey: 32
   sprintKey: 304
   groundDrag: 5

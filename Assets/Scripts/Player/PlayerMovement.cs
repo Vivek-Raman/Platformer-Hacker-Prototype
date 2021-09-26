@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Extras;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -19,6 +20,9 @@ public class PlayerMovement : MonoBehaviour
     [Header("Jumping")]
     public float jumpForce = 5f;
     public float gravityForce = 3f;
+    [Range(1, 60)] public int frameBufferLength = 16;
+
+    private Buffer<bool> jumpInputBuffer = null;
 
     [Header("Keybinds")]
     [SerializeField] KeyCode jumpKey = KeyCode.Space;
@@ -58,17 +62,19 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+        jumpInputBuffer = new Buffer<bool>(frameBufferLength);
     }
 
     private void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        jumpInputBuffer.Push(Input.GetKeyDown(jumpKey));
 
         MyInput();
         ControlDrag();
         ControlSpeed();
 
-        if (Input.GetKeyDown(jumpKey) && isGrounded)
+        if (jumpInputBuffer.Poll(true) && isGrounded)
         {
             Jump();
         }
