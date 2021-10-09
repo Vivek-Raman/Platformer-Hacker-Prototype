@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Extras
+namespace Extras.Collections
 {
 public class Buffer<T> : Queue<T>
 {
@@ -21,10 +21,17 @@ public class Buffer<T> : Queue<T>
         this.Enqueue(value);
     }
 
+
+
     public bool Poll(T value)
     {
-        return this.Contains(value);
+        if (this.Contains(value))
+        {
+            this.Clear();
+            return true;
+        }
 
+        return false;
     }
 }
 }

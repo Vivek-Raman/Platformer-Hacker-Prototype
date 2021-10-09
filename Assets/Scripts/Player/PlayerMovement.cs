@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using Extras;
+using Extras.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -47,16 +47,6 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody rb;
 
     RaycastHit slopeHit;
-
-    private bool OnSlope()
-    {
-        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit,
-            playerHeight * 0.5f + 0.5f, groundMask))
-        {
-            return !slopeHit.normal.Equals(Vector3.up);
-        }
-        return false;
-    }
 
     private void Start()
     {
@@ -147,5 +137,15 @@ public class PlayerMovement : MonoBehaviour
             }
             rb.AddForce(force, ForceMode.Acceleration);
         }
+    }
+
+    private bool OnSlope()
+    {
+        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit,
+            playerHeight * 0.5f + 0.5f, groundMask))
+        {
+            return !slopeHit.normal.Equals(Vector3.up); // TODO: improve with dot product tending to 1
+        }
+        return false;
     }
 }

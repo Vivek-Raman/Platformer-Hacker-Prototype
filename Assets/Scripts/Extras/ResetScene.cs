@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Extras
+namespace Extras.Collections
 {
 public class ResetScene : MonoBehaviour
 {

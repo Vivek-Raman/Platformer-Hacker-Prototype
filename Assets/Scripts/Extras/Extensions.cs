@@ -22,6 +22,21 @@ public static class Extensions
         vector3.Set(0f, 0f, 0f);
         return vector3;
     }
+
+    /// <summary>
+    /// Returns true if each component of the vectors are approximately equal to the
+    /// corresponding component of the other vector.
+    /// </summary>
+    /// <param name="vector3">Value to compare.</param>
+    /// <param name="other">Value to compare.</param>
+    /// <returns>True if vectors are approximately equal.</returns>
+    public static bool Approximately(this Vector3 vector3, Vector3 other)
+    {
+        return (vector3 - other).sqrMagnitude < 0.01;
+        // return Mathf.Approximately(vector3.x, other.x)
+        //        && Mathf.Approximately(vector3.y, other.y)
+        //        && Mathf.Approximately(vector3.z, other.z);
+    }
     
     /// <summary>
     /// Flips the variable and returns new state.
