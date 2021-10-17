@@ -4,13 +4,19 @@ using Extras.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyMovement : MonoBehaviour
+public class EnemyMovement : StateMachine
 {
     public GameObject associatedPlatform;
 
     private List<Vector3> waypointPositions = null;
     private int currentWaypointIndex = 0;
     private NavMeshAgent agent = null;
+    private EnemyBehaviourMode currentMode;
+
+    private EnemyIdleState idleState;
+    private EnemyPatrolState patrolState;
+    // private EnemyAlertState alertState;
+    private EnemyPursuitState pursuitState;
 
     private void Awake()
     {
@@ -30,11 +36,19 @@ public class EnemyMovement : MonoBehaviour
 
     private void Update()
     {
+        Vector3 destination = this.transform.position;
+
+        switch (currentMode)
+        {
+
+        }
         if (this.transform.position.Approximately(waypointPositions[currentWaypointIndex]))
         {
             currentWaypointIndex = (currentWaypointIndex + 1) % waypointPositions.Count;
-            agent.destination = waypointPositions[currentWaypointIndex];
+            destination = waypointPositions[currentWaypointIndex];
         }
+
+        agent.destination = destination;
     }
 
     private void RecalculateWaypointPositions()
@@ -54,4 +68,11 @@ public class EnemyMovement : MonoBehaviour
             waypoint.SetParent(waypointParent.transform);
         }
     }
+}
+
+enum EnemyBehaviourMode
+{
+    NULL,
+    Patrol,
+
 }
